@@ -47,13 +47,14 @@ The function flags block as *'free'* block.
 #### Memory will be successfully allocated
 ##### Code
 ```
-Allocator allocator = new Allocator(1024);
-int ind1 = allocator.alloc(24);
-int ind2 = allocator.alloc(32);
-System.out.println(allocator.dump());
+PageMemoryAllocator allocator = new PageMemoryAllocator(1024);
+            int ind1 = allocator.MemAllocate(24);
+            allocator.write(ind1, new byte[] { 1, 4, 8, 5 });
+            allocator.MemRealloc(ind1, 48);
+            Console.WriteLine(allocator.MemDump());
 ```
 
 ##### Output
-![allocating 24 and 32 bytes](img/1.png)
+![allocating 24,reallocating 48](1.png)
 ---
 
