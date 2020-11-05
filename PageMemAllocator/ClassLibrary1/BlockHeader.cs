@@ -8,35 +8,26 @@ namespace ClassLibrary1
     class BlockHeader
     {
         public const int BLOCK_HEADER_SIZE = 4;
-        private bool _isFree;
+        public bool IsFree {get; set; };
 
         public BlockHeader()
         {
-            this._isFree = true;
+            this.IsFree = true;
         }
 
         public BlockHeader(byte[] byteArray)
         {
-            bool _isFree = BitConverter.ToBoolean(byteArray,0);
-            this._isFree = _isFree;
+            bool IsFree = BitConverter.ToBoolean(byteArray,0);
+            this.IsFree = IsFree;
         }
 
-        public bool isFree()
-        {
-            return _isFree;
-        }
+        
 
-        public void setFree(bool _isFree)
-        {
-            this._isFree = _isFree;
-        }
-
-        public byte[] toByteArray()
+        public byte[] ToByteArray()
         {
             byte[] byteArray = new byte[BLOCK_HEADER_SIZE];
 
-            int index = 0;
-            byteArray[index] = Convert.ToByte( _isFree);
+            byteArray[0] = Convert.ToByte( IsFree);
 
             return byteArray;
         }
@@ -44,7 +35,7 @@ namespace ClassLibrary1
         
         public override String ToString()
         {
-            return string.Format($"Free: {0}", _isFree); //////////////////
+            return string.Format("Free: " +  IsFree); 
         }
 
        
